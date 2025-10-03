@@ -1,16 +1,47 @@
-<p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Friends" %>
-
-<h1>Friends List</h1>
-
-<div id="friends">
-  <% @friends.each do |friend| %>
-    <%= render friend %>
-    <p>
-      <%= link_to "Show this friend", friend %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New friend", new_friend_path %>
+<% content_for :title do %>
+  Friends
+<% end %>
+  <h1>Friends List</h1>
+  <div id="friends">
+    <%# <% @friends.each do |friend| %> 
+      <%# <%= render friend %> 
+       <%# <p><%= link_to "Show this friend" , friend %></p> 
+        <%# <% end %> 
+          <table class="table table-striped table-bordered table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Twitter</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @friends.each_with_index do |friend, index| %>
+                <tr>
+                  <th scope="row"><%= index + 1 %></th>
+                  <td scope="col">
+                    <%= friend.first_name %>
+                  </td>
+                  <td scope="col">
+                    <%= friend.last_name %>
+                  </td>
+                  <td scope="col">
+                    <%= friend.email %>
+                  </td>
+                  <td scope="col">
+                    <%= friend.phone %>
+                  </td>
+                  <td scope="col">
+                    <%= friend.twitter %>
+                  </td>
+                  <td scope="col"><%= link_to "Show" , friend, class:"btn btn-success mb-2" %> <%= link_to "Edit" , edit_friend_path(friend), class:"btn btn-primary mb-2" %> <%= button_to "Delete", friend, method: :delete, class:"btn btn-danger", data: { turbo_confirm: "Are you sure you want to delete this friend?" } %></td>
+                </tr>
+                <% end %>
+            </tbody>
+          </table>
+  </div>
+<%= link_to "New friend" , new_friend_path, class:"btn btn-secondary" %>

@@ -8,6 +8,7 @@ class FriendsController < ApplicationController
 
   # GET /friends/1 or /friends/1.json
   def show
+    @friend = Friend.find(params[:id])
   end
 
   # GET /friends/new
@@ -49,6 +50,7 @@ class FriendsController < ApplicationController
 
   # DELETE /friends/1 or /friends/1.json
   def destroy
+    @friend = Friend.find(params[:id])
     @friend.destroy!
 
     respond_to do |format|

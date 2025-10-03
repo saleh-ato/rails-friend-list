@@ -36,7 +36,9 @@
     <%= form.label :twitter, style: "display: block", class:"form-label" %>
     <%= form.text_field :twitter, class:"form-control", placeholder:"Twitter" %>
   </div>
-
+  <div class="">
+    <%= form.number_field :user_id,id: :firend_user_id, class:"form-control", placeholder:"User Id", value:current_user.id, type: :hidden%>
+  </div>
   <div class="">
     <%= form.submit class: "btn btn-primary col-12" %>
   </div>
